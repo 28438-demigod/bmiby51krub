@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>โปรแกรมคำนวณ BMI</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2{
+  text-align: center;
+  color: #2193b0;
+}
+
+label{
+  font-weight: bold;
+}
+
+input{
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 15px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button{
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background: #2193b0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+button:active{
+  background: #176d87;
+}
+
+.result{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.footer{
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: gray;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h2>โปรแกรมคำนวณ BMI</h2>
+
+<label>น้ำหนัก (กิโลกรัม)</label>
+<input id="weight" type="number" placeholder="เช่น 60">
+
+<label>ส่วนสูง (เซนติเมตร)</label>
+<input id="height" type="number" placeholder="เช่น 170">
+
+<button onclick="calcBMI()">คำนวณ BMI</button>
+
+<div class="result">
+  <p id="result"></p>
+  <p id="status"></p>
+</div>
+
+<div class="footer">
+จัดทำโดย ม.5/1 ไม้เรียงประชาสรรค์_
+</div>
+
+</div>
+
+<script>
+function calcBMI(){
+  let w = document.getElementById("weight").value;
+  let h = document.getElementById("height").value / 100;
+
+  if(w <= 0 || h <= 0){
+    alert("กรุณาใส่ข้อมูลให้ถูกต้อง");
+    return;
+  }
+
+  let bmi = w / (h * h);
+  bmi = bmi.toFixed(2);
+
+  document.getElementById("result").innerText =
+    "ค่า BMI = " + bmi;
+
+  let status = "";
+  if(bmi < 18.5){
+    status = "ขี้ก้างแล้วค้าบ";
+  }else if(bmi < 23){
+    status = "ปกติดีครับ";
+  }else if(bmi < 25){
+    status = "ใกล้อ้วนแล้วเพื่อนเอ้ย";
+  }else{
+    status = "ไอ้เชี่ยอ้วน";
+  }
+
+  document.getElementById("status").innerText =
+    "สถานะร่างกาย: " + status;
+}
+</script>
+
+</body>
+</html>
